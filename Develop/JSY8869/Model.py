@@ -9,8 +9,8 @@ import os
 import re
 import matplotlib.pyplot as plt
 okt = Okt()
-TRAIN_FILE = os.path.join("qa1_single-supporting-fact_train_kor.txt")
-TEST_FILE = os.path.join("qa1_single-supporting-fact_test_kor.txt")
+TRAIN_FILE = os.path.join("about where/train_data.txt")
+TEST_FILE = os.path.join("about where/test_data.txt")
 i = 0
 lines = open(TRAIN_FILE , "rb")
 for line in lines:
@@ -210,3 +210,13 @@ ytest = np.argmax(Ytest, axis=1)
 # get predictions
 Ytest_ = model.predict([Xstest, Xqtest])
 ytest_ = np.argmax(Ytest_, axis=1)
+NUM_DISPLAY = 50
+
+print("{:18}|{:5}|{}".format("질문", "실제값", "예측값"))
+print(39 * "-")
+
+for i in range(NUM_DISPLAY):
+    question = " ".join([idx2word[x] for x in Xqtest[i].tolist()])
+    label = idx2word[ytest[i]]
+    prediction = idx2word[ytest_[i]]
+    print("{:20}: {:6} {}".format(question, label, prediction))
