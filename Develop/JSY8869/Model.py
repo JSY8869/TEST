@@ -181,42 +181,42 @@ model.compile(optimizer='rmsprop', loss='categorical_crossentropy',
 
 print(model.summary())
 
-# start training the model
-history = model.fit([Xstrain, Xqtrain],
-         Ytrain, batch_size, train_epochs,
-         validation_data=([Xstest, Xqtest], Ytest))
+# # start training the model
+# history = model.fit([Xstrain, Xqtrain],
+#          Ytrain, batch_size, train_epochs,
+#          validation_data=([Xstest, Xqtest], Ytest))
 
-# save model
-model.save('model.h5')
-# plot accuracy and loss plot
-plt.subplot(211)
-plt.title("Accuracy")
-plt.plot(history.history["acc"], color="g", label="train")
-plt.plot(history.history["val_acc"], color="b", label="validation")
-plt.legend(loc="best")
+# # save model
+# model.save('model.h5')
+# # plot accuracy and loss plot
+# plt.subplot(211)
+# plt.title("Accuracy")
+# plt.plot(history.history["acc"], color="g", label="train")
+# plt.plot(history.history["val_acc"], color="b", label="validation")
+# plt.legend(loc="best")
 
-plt.subplot(212)
-plt.title("Loss")
-plt.plot(history.history["loss"], color="g", label="train")
-plt.plot(history.history["val_loss"], color="b", label="validation")
-plt.legend(loc="best")
+# plt.subplot(212)
+# plt.title("Loss")
+# plt.plot(history.history["loss"], color="g", label="train")
+# plt.plot(history.history["val_loss"], color="b", label="validation")
+# plt.legend(loc="best")
 
-plt.tight_layout()
-plt.show()
+# plt.tight_layout()
+# plt.show()
 
-# labels
-ytest = np.argmax(Ytest, axis=1)
+# # labels
+# ytest = np.argmax(Ytest, axis=1)
 
-# get predictions
-Ytest_ = model.predict([Xstest, Xqtest])
-ytest_ = np.argmax(Ytest_, axis=1)
-NUM_DISPLAY = 50
+# # get predictions
+# Ytest_ = model.predict([Xstest, Xqtest])
+# ytest_ = np.argmax(Ytest_, axis=1)
+# NUM_DISPLAY = 50
 
-print("{:18}|{:5}|{}".format("질문", "실제값", "예측값"))
-print(39 * "-")
+# print("{:18}|{:5}|{}".format("질문", "실제값", "예측값"))
+# print(39 * "-")
 
-for i in range(NUM_DISPLAY):
-    question = " ".join([idx2word[x] for x in Xqtest[i].tolist()])
-    label = idx2word[ytest[i]]
-    prediction = idx2word[ytest_[i]]
-    print("{:20}: {:6} {}".format(question, label, prediction))
+# for i in range(NUM_DISPLAY):
+#     question = " ".join([idx2word[x] for x in Xqtest[i].tolist()])
+#     label = idx2word[ytest[i]]
+#     prediction = idx2word[ytest_[i]]
+#     print("{:20}: {:6} {}".format(question, label, prediction))
